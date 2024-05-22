@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Picker for Divs</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        transition: background-color 0.5s ease;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .colorBox {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<input type="color" id="colorPicker" style="display: none;">
+
+<div class="colorBox" id="colorBox1"></div>
+<div class="colorBox" id="colorBox2"></div>
+<div class="colorBox" id="colorBox3"></div>
+<div class="colorBox" id="colorBox4"></div>
+<div class="colorBox" id="colorBox5"></div>
+<div class="colorBox" id="colorBox6"></div>
+<div class="colorBox" id="colorBox7"></div>
+<div class="colorBox" id="colorBox8"></div>
+<div class="colorBox" id="colorBox9"></div>
+<div class="colorBox" id="colorBox10"></div>
+
+<script>
+    // Get all colorBox elements
+    const colorBoxes = document.querySelectorAll('.colorBox');
+
+    // Get the color picker input element
+    const colorPicker = document.getElementById('colorPicker');
+
+    // Function to change background color of the clicked colorBox
+    function changeBackgroundColor(event) {
+        // Set the color picker value to the current color of the clicked box
+        colorPicker.value = event.target.style.backgroundColor;
+        // Show the color picker
+        colorPicker.click();
+        // Store the clicked box element for later use
+        selectedBox = event.target;
+    }
+
+    // Function to handle color picker change event
+    function handleColorPickerChange() {
+        if (selectedBox) {
+            // Change the background color of the selected box to the color picker value
+            selectedBox.style.backgroundColor = colorPicker.value;
+        }
+    }
+
+    // Add click event listener to each colorBox
+    colorBoxes.forEach(colorBox => {
+        colorBox.addEventListener('click', changeBackgroundColor);
+    });
+
+    // Add change event listener to the color picker
+    colorPicker.addEventListener('change', handleColorPickerChange);
+
+    // Variable to store the selected box element
+    let selectedBox = null;
+</script>
+
+</body>
+</html>
